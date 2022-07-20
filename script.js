@@ -5,11 +5,15 @@ const displayField = document.querySelector(".fruits ul");
 const notDiv = document.querySelector(".notification");
 let fruits = [];
 
-if (localStorage.length > 1) {
+if (localStorage.length >= 1) {
 	fruits = JSON.parse(localStorage.getItem("x"));
 }
 
 console.log(fruits);
+// if(0) console.log('I am chaion');
+// console.log(localStorage.);
+
+// console.log(fruits);
 
 const upperFirstLetter = function (word) {
 	word = word.toLowerCase();
@@ -31,7 +35,7 @@ const notificationCenter = function (color, text) {
 
 const fruitNameEnter = function () {
 	const fruitName = newFruit.value.toLowerCase();
-	if (fruits.includes(fruitName)) {
+	if (fruits !== null && fruits.includes(fruitName)) {
 		notificationCenter(
 			"red",
 			"Cannot add the fruit name. It is already added."
@@ -52,6 +56,7 @@ const fruitNameEnter = function () {
 
 const updateUI = function () {
 	displayField.innerHTML = "";
+	if (fruits === null) return;
 	fruits.forEach((fruit) => {
 		const listItem = document.createElement("li");
 		listItem.innerText = upperFirstLetter(fruit);
@@ -70,3 +75,5 @@ document.addEventListener("keydown", (e) => {
 		fruitNameEnter();
 	}
 });
+
+localStorage.removeItem('randid');
